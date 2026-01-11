@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Telebirr Payment (Simulation)</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+      }
+      .card {
+        max-width: 400px;
+        margin: 80px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        text-align: center;
+        color: #1c7ed6;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        font-size: 16px;
+      }
+      button {
+        width: 100%;
+        margin-top: 20px;
+        padding: 12px;
+        font-size: 16px;
+        background: #1c7ed6;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #1864ab;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>Telebirr Payment</h2>
+
+      <form method="POST" action="/payment/web/pay">
+        <input type="hidden" name="prepay_id" id="prepay_id" />
+
+        <label>Phone Number</label>
+        <input type="text" name="phone" placeholder="09XXXXXXXX" required />
+
+        <label>PIN</label>
+        <input type="password" name="pin" required />
+
+        <button type="submit">Pay</button>
+      </form>
+    </div>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      document.getElementById("prepay_id").value =
+        params.get("prepay_id") || "";
+    </script>
+  </body>
+</html>
