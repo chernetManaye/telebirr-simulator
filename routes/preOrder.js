@@ -5,7 +5,7 @@ const router = express.Router();
 
 /**
  * Simulated Telebirr Create Order API
- * POST /payment/v1/merchant/preOrder
+ * POST /payment/preOrder
  */
 router.post("/preOrder", (req, res) => {
   const auth = req.headers.authorization;
