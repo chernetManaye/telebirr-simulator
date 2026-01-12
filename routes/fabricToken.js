@@ -7,6 +7,8 @@ router.post("/token", (req, res) => {
   const { appSecret } = req.body || {};
   const appKey = req.headers["x-app-key"];
 
+  console.log(req.headers);
+
   if (!appSecret) {
     return res.status(400).json({
       errorCode: "INVALID_REQUEST",
@@ -17,7 +19,7 @@ router.post("/token", (req, res) => {
     return res.status(400).json({
       result: "FAIL",
       code: "401",
-      msg: "Missing Authorization header",
+      msg: "Missing Authorization header X-APP-Key",
     });
   }
 

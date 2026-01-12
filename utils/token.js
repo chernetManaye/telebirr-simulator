@@ -1,25 +1,18 @@
+const crypto = require("crypto");
+
 function pad(n) {
   return n.toString().padStart(2, "0");
 }
 
 function formatTelebirrDate(date) {
   return (
-    date.getFullYear() +
-    pad(date.getMonth() + 1) +
-    pad(date.getDate()) +
-    pad(date.getHours()) +
-    pad(date.getMinutes()) +
-    pad(date.getSeconds())
+    date.getUTCFullYear() +
+    pad(date.getUTCMonth() + 1) +
+    pad(date.getUTCDate()) +
+    pad(date.getUTCHours()) +
+    pad(date.getUTCMinutes()) +
+    pad(date.getUTCSeconds())
   );
-}
-
-function randomHex(length) {
-  const chars = "abcdef0123456789";
-  let out = "";
-  for (let i = 0; i < length; i++) {
-    out += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return out;
 }
 
 function generateFabricToken() {
@@ -29,7 +22,7 @@ function generateFabricToken() {
   return {
     effectiveDate: formatTelebirrDate(now),
     expirationDate: formatTelebirrDate(expires),
-    token: "Bearer " + randomHex(32),
+    token: "Bearer " + crypto.randomBytes(16).toString("hex"),
   };
 }
 

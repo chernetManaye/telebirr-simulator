@@ -7,7 +7,8 @@ const router = express.Router();
  * Simulated Telebirr Create Order API
  * POST /payment/preOrder
  */
-router.post("/preOrder", (req, res) => {
+
+router.post("/merchant/preOrder", (req, res) => {
   const auth = req.headers.authorization;
   const appKey = req.headers["x-app-key"];
   const body = req.body || {};
@@ -63,9 +64,6 @@ router.post("/preOrder", (req, res) => {
     });
   }
 
-  // ---- generate simulated response ----
-  const prepayId = generatePrepayId();
-
   res.json({
     result: "SUCCESS",
     code: "0",
@@ -75,7 +73,7 @@ router.post("/preOrder", (req, res) => {
     sign_type: "SHA256WithRSA",
     biz_content: {
       merch_order_id,
-      prepay_id: prepayId,
+      prepay_id: generatePrepayId(),
     },
   });
 });
@@ -85,3 +83,28 @@ function randomNonce() {
 }
 
 module.exports = router;
+
+// {
+//   "method": "payment.preorder",
+//   "timestamp": "1234567890",
+//   "nonce_str": "abc",
+//   "version": "1.0",
+//   "sign": "JYyVqFAmdgBG4n1eBQYUwNlC...",
+//   "sign_type": "SHA256WithRSA",
+//   "biz_content": {
+//     "notify_url": "https://example.com/notify",
+//     "redirect_url":"https://example.com/redirect",
+//     "appid": "1072905731584000",
+//     "merch_code": "000000",
+//     "merch_order_id": "order123",
+//     "timeout_express": "120m",
+//     "title": "Phone",
+//     "total_amount": "12",
+//     "trade_type": "Checkout",
+//     "business_type": "BuyGoods",
+//     "trans_currency": "ETB",
+//     "payee_type":"3000",
+//     "payee_identifier":"000000",
+//     "payee_identifier_type":"04"
+//   }
+// }

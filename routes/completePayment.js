@@ -1,0 +1,22 @@
+const express = require("express");
+const router = express.Router();
+
+router.post("/complete", async (req, res) => {
+  const { prepay_id } = req.body;
+
+  console.log("SIM COMPLETE PAYMENT", prepay_id);
+
+  // 🔔 simulate notify_url (optional for now)
+  // await axios.post(merchantNotifyUrl, payload)
+
+  // 🔁 redirect user back to merchant
+  const redirectUrl =
+    "https://merchant.example.com/payment-result" +
+    "?status=SUCCESS" +
+    "&prepay_id=" +
+    prepay_id;
+
+  res.redirect(redirectUrl);
+});
+
+module.exports = router;
