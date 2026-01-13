@@ -5,10 +5,10 @@ const router = express.Router();
 
 /**
  * Simulated Telebirr Create Order API
- * POST /payment/preOrder
+ * POST /payment/v1/merchant/preOrder
  */
 
-router.post("/merchant/preOrder", (req, res) => {
+router.post("/", (req, res) => {
   const auth = req.headers.authorization;
   const appKey = req.headers["x-app-key"];
   const body = req.body || {};

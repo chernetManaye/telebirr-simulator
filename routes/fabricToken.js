@@ -3,7 +3,12 @@ const { generateFabricToken } = require("../utils/token");
 
 const router = express.Router();
 
-router.post("/token", (req, res) => {
+/**
+ * Simulated Telebirr Create Order API
+ * POST /payment/v1/token
+ */
+
+router.post("/", (req, res) => {
   const { appSecret } = req.body || {};
   const appKey = req.headers["x-app-key"];
 

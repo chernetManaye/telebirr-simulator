@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-router.post("/pay", (req, res) => {
+router.post("/", (req, res) => {
   const { phone, pin, prepay_id } = req.body;
 
   // -----------------------------
@@ -49,7 +49,7 @@ router.post("/pay", (req, res) => {
     prepay_id,
   });
 
-  res.redirect(`/payment/web/result.html?prepay_id=${prepay_id}`);
+  res.redirect(`/payment/web/result.html?`);
 });
 
 module.exports = router;

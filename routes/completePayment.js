@@ -1,10 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-router.post("/complete", async (req, res) => {
+router.post("/", async (req, res) => {
   const { prepay_id } = req.body;
-
-  console.log("SIM COMPLETE PAYMENT", prepay_id);
 
   // 🔔 simulate notify_url (optional for now)
   // await axios.post(merchantNotifyUrl, payload)

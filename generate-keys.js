@@ -13,10 +13,5 @@ const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
   },
 });
 
-// Save to files
 fs.writeFileSync("telebirr_private.pem", privateKey);
 fs.writeFileSync("telebirr_public.pem", publicKey);
-
-console.log("Keys generated:");
-console.log("✔ telebirr_private.pem");
-console.log("✔ telebirr_public.pem");
