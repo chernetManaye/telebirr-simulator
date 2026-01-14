@@ -122,6 +122,7 @@ router.post("/", async (req, res) => {
     {
       $set: {
         "orders.$.transId": transactionId,
+        "orders.$.orderStatus": "PAY_SUCCESS",
       },
     },
     {

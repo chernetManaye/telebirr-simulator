@@ -93,6 +93,7 @@ router.post("/", async (req, res) => {
           callbackInfo: callback_info,
           title: title,
           prepayId: prepayId,
+          orderStatus: "WAIT_PAY",
         },
       },
     },

@@ -4,6 +4,7 @@ const fabricTokenRoute = require("./routes/fabricToken");
 const preOrderRoute = require("./routes/preOrder");
 const payRoute = require("./routes/pay");
 const completePaymentRoute = require("./routes/completePayment");
+const queryOrderRoute = require("./routes/queryOrder");
 
 const { mongoInit } = require("./db");
 
@@ -26,7 +27,7 @@ app.use("/payment/web/complete", completePaymentRoute);
 app.use("/payment/v1/token", fabricTokenRoute);
 app.use("/payment/v1/merchant/preOrder", preOrderRoute);
 // app.use("/payment/v1/merchant/refund");
-// app.use("/payment/v1/merchant/queryOrder");
+app.use("/payment/v1/merchant/queryOrder", queryOrderRoute);
 
 const PORT = process.env.PORT || 3000;
 
