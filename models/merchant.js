@@ -16,6 +16,9 @@ const merchantSchema = new mongoose.Schema(
         title: String,
         prepayId: String,
         transId: String,
+        refundTransId: String,
+        refundReason: String,
+        refundAmount: String,
         orderStatus: {
           type: String,
           enum: [
