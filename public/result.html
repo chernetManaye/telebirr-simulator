@@ -126,12 +126,15 @@
       <div class="divider"></div>
 
       <div class="info">
-        <p><strong>Prepay ID</strong></p>
-        <p id="prepayId">-</p>
+        <p><strong>Amount</strong></p>
+        <p id="amount">-</p>
+        <p><strong>transaction ID</strong></p>
+        <p id="transId">-</p>
+        <p><strong>Product</strong></p>
+        <p id="title">-</p>
       </div>
 
-      <form method="POST" action="/payment/web/complete">
-        <input type="hidden" name="prepay_id" id="prepay_id" />
+      <form id="completeForm">
         <button type="submit">OK</button>
       </form>
 
@@ -143,10 +146,16 @@
 
     <script>
       const params = new URLSearchParams(window.location.search);
-      const prepayId = params.get("prepay_id") || "-";
 
-      document.getElementById("prepayId").innerText = prepayId;
-      document.getElementById("prepay_id").value = prepayId;
+      document.getElementById("amount").innerText = params.get("amount") || "-";
+      document.getElementById("transId").innerText =
+        params.get("trans_id") || "-";
+      document.getElementById("title").innerText = params.get("title") || "-";
+
+      const form = document.getElementById("completeForm");
+
+      form.method = "POST";
+      form.action = "/payment/web/complete" + window.location.search;
     </script>
   </body>
 </html>

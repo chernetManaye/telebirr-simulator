@@ -5,7 +5,13 @@ const preOrderRoute = require("./routes/preOrder");
 const payRoute = require("./routes/pay");
 const completePaymentRoute = require("./routes/completePayment");
 
+const { mongoInit } = require("./db");
+
+const http = require("http");
+
 const app = express();
+
+const server = http.createServer(app);
 
 // https://telebirr-node-simulator.onrender.com
 // https://telebirr-node-simulator.onrender.com/web
@@ -14,7 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // http://localhost:3000/payment/web/?
-// serve index.html
 app.use("/payment/web", express.static(path.join(__dirname, "public")));
 app.use("/payment/web/pay", payRoute);
 app.use("/payment/web/complete", completePaymentRoute);
@@ -25,6 +30,10 @@ app.use("/payment/v1/merchant/preOrder", preOrderRoute);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log("Telebirr Simulator running on port", PORT);
-});
+mongoInit()
+  .then(() =>
+    server.listen(PORT, "0.0.0.0", () => {
+      console.log("Telebirr Simulator running on port", PORT);
+    })
+  )
+  .catch((err) => console.log(err));

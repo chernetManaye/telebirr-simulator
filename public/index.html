@@ -160,9 +160,7 @@
 
       <div id="errorBox" class="error" style="display: none"></div>
 
-      <form method="POST" action="/payment/web/pay">
-        <input type="hidden" name="prepay_id" id="prepay_id" />
-
+      <form id="payForm">
         <label for="phone">Phone Number</label>
         <input
           id="phone"
@@ -189,11 +187,6 @@
 
     <script>
       const params = new URLSearchParams(window.location.search);
-
-      // prepay_id
-      document.getElementById("prepay_id").value =
-        params.get("prepay_id") || "";
-
       // error handling
       const error = params.get("error");
       if (error) {
@@ -201,6 +194,10 @@
         box.textContent = error;
         box.style.display = "block";
       }
+      const form = document.getElementById("payForm");
+
+      form.method = "POST";
+      form.action = "/payment/web/pay" + window.location.search;
     </script>
   </body>
 </html>
