@@ -7,7 +7,6 @@ const payRoute = require("./routes/pay");
 const completePaymentRoute = require("./routes/completePayment");
 const queryOrderRoute = require("./routes/queryOrder");
 const refundOrderRoute = require("./routes/refundOrder");
-
 const { mongoInit } = require("./db");
 
 const http = require("http");
