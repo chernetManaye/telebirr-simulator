@@ -10,6 +10,8 @@ const router = express.Router();
  */
 
 router.post("/", async (req, res) => {
+  console.log("headers:", req.headers);
+  console.log("body", req.body);
   const { appSecret } = req.body || {};
   const appId = req.headers["x-app-key"];
 

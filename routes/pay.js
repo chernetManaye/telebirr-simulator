@@ -49,7 +49,7 @@ router.post("/", async (req, res) => {
 
   if (!phoneRegex.test(normalizedPhone)) {
     return res.redirect(
-      buildRedirect("/payment/web/", req.query, {
+      buildRedirect("/web/", req.query, {
         version: "1.0",
         trade_type: "Checkout",
         error: "Invalid phone number",
@@ -69,7 +69,7 @@ router.post("/", async (req, res) => {
 
   if (!pinRegex.test(pin)) {
     return res.redirect(
-      buildRedirect("/payment/web/", req.query, {
+      buildRedirect("/web/", req.query, {
         version: "1.0",
         trade_type: "Checkout",
         error: "PIN must be exactly 6 digits",
@@ -87,7 +87,7 @@ router.post("/", async (req, res) => {
 
   if (!preOrder) {
     return res.redirect(
-      buildRedirect("/payment/web/", req.query, {
+      buildRedirect("/web/", req.query, {
         version: "1.0",
         trade_type: "Checkout",
         error: "Order not found",
@@ -138,7 +138,7 @@ router.post("/", async (req, res) => {
   // // -----------------------------
 
   res.redirect(
-    `/payment/web/result.html?amount=${preOrder.amount}&trans_id=${transactionId}&title=${preOrder.title}&redirect_url=${merchant.redirectUrl}`
+    `/web/result.html?amount=${preOrder.amount}&trans_id=${transactionId}&title=${preOrder.title}&redirect_url=${merchant.redirectUrl}`
   );
 });
 
