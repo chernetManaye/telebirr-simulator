@@ -33,6 +33,9 @@ router.post("/", async (req, res) => {
     },
   );
 
+  console.log("Updated merchant:", merchant);
+  console.log("Searching for order Id:", merch_order_id);
+
   if (!merchant) {
     return res.json({
       errorCode: "1",
