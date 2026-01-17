@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
   const merchant = await Merchant.findOneAndUpdate(
     {
       merchantAppId: appid,
-      "orders.transId": refund_request_no,
+      "orders._id": merch_order_id,
     },
     {
       $set: {
@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
     },
     {
       new: true,
-    }
+    },
   );
 
   if (!merchant) {
@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
   }
 
   const preOrder = merchant.orders.find(
-    (order) => order._id === merch_order_id
+    (order) => order._id === merch_order_id,
   );
 
   if (!preOrder) {
